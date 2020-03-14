@@ -6,7 +6,7 @@ namespace _021Lab_Gdr {
         protected int strength;
         protected int dexterity;
         protected int health;
-        protected static Random fate = new Random();
+        protected static Random fate = new Random();            //determines the chance to deal greater damage
 
         protected Creature(string name, int strength, int dexterity, int health) {
             this.name = name;
@@ -41,7 +41,7 @@ namespace _021Lab_Gdr {
         public abstract int Block(int damage);
 
         public void ReduceHealthBy(int actualDamage) {
-            health -= actualDamage;
+            health -= actualDamage;                       //health decreases by the damage dealt by another creature
         }
 
         public bool IsAlive() {
