@@ -14,8 +14,6 @@ namespace _021Lab_Gdr {
             Console.WriteLine("\n");
             string champion = (goblin1.IsAlive()) ? goblin1.Name : goblin2.Name;
             Console.WriteLine(champion + " won!");
-            
-            
         }
     }
 }
