@@ -11,10 +11,7 @@ namespace _021Lab_Gdr {
         }
 
         public override int Block(int damage) {
-            if( dexterity > damage)
-                return 0;
-            else
-                return damage - dexterity;
+            return (dexterity < damage) ? (damage - dexterity) : 0;
         }
 
         public override string ToString() {
