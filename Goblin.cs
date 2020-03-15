@@ -5,6 +5,10 @@ namespace _021Lab_Gdr {
         public Goblin(string name, int strength, int dexterity, int health) : base(name, strength, dexterity, health) {
         }
 
+        public Goblin() : this("goblin", 14, 5, 10) {
+            
+        }
+        
         public override void Attack(Creature enemy) {
             int damage = fate.Next(0,strength + 1);                   //damage is a random value between 0 and the actual strength of the creature
             enemy.ReduceHealthBy(enemy.Block(damage));

@@ -13,6 +13,7 @@ namespace _021Lab_Gdr {
             _weaponStrength = (_weapon != null && _weapon.Integrity > 0) ? _weapon.Damage : 0;
             _armorDexterity = (_armor != null && _armor.Integrity > 0) ? _armor.Protection : 0;
         }
+        public Warrior() : this("Warrior", 25,28,50,1,new Sword(), new PlateArmor()){}
 
         public override void Attack(Creature enemy) {
             if (_weapon != null && _weapon.Integrity > 0) _weapon.Integrity--;   //if the weapon is still intact, decrease it's integrity
