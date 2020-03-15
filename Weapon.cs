@@ -1,24 +1,24 @@
 namespace _021Lab_Gdr {
     public abstract class Weapon {
-        protected int damage;
-        protected int integrity;
-        protected double price;
+        protected int _damage;
+        protected int _integrity;
+        protected double _price;
 
         public Weapon(int damage, int integrity, double price) {
-            this.damage = damage;
-            this.integrity = integrity;
-            this.price = price;
+            _damage = damage;
+            _integrity = integrity;
+            _price = price;
         }
         public Weapon() : this(5, 100,30){}
 
-        public int Damage => damage;
+        public int Damage => _damage;
 
         public int Integrity {
-            get => integrity;
-            set => integrity = value;
+            get => _integrity;
+            set => _integrity = value;
         }
 
-        public double Price => price;
+        public double Price => _price;
     }
     
 }
