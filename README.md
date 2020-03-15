@@ -1,6 +1,6 @@
 # RolePlayingGame
-##Known issues
+## Known issues
+-none
 
-
-##Fixed
+## Fixed
 -damage controller
