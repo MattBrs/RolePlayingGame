@@ -3,10 +3,13 @@
 -none
 
 ## Fixed
--damage controller - Release 3
+-damage controller Release 3
 
-##Changelog
+## Changelog
 -Added spell system:
+
     -Fireball
-    -MagicShield
+    
+    -MagicShield 
+    
 -Added mage class
