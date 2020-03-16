@@ -18,3 +18,5 @@
 -Improved army fights (parallels fights with large groups of creatures).
 
 -Improved code structure and introduced more conditionals.
+
+-improved Level System.
