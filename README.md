@@ -1,6 +1,6 @@
 # RolePlayingGame
 ## Known issues
--none
+-No menu for mode selection of character selection -> to change fighters you have to edit the code.
 
 ## Fixed
 -damage controller - Release 3
