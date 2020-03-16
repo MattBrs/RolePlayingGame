@@ -46,7 +46,7 @@ namespace _021Lab_Gdr {
                     if (typeof(MagicShield) == _recoverySpell.GetType() && !((MagicShield) _recoverySpell).IsActive()
                     ) //if the recovery spell is a magicShield, check if it's already active before throwing.
                         _recoverySpell.Throw(this, enemy);
-                    else if(_recoverySpell.GetType() != typeof(MagicShield))                                                   //UNOPTIMIZED. REVISIT LATER
+                    else if(_recoverySpell.GetType() != typeof(MagicShield))               //UNOPTIMIZED. REVISIT LATER
                         _recoverySpell.Throw(this, enemy);
                     else if (_destructiveSpell != null &&
                              _destructiveSpell.IsUsable(this) && _mana >= _destructiveSpell.ManaRequirement) {
