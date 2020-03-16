@@ -2,6 +2,8 @@
 ## Known issues
 -No menu for mode selection of character selection -> to change fighters you have to edit the code.
 
+-Mages refuse to cure themselves
+
 ## Fixed
 -damage controller - Release 3
 
@@ -20,3 +22,5 @@
 -Improved code structure and introduced more conditionals.
 
 -improved Level System.
+
+-Added mana regeneration
