@@ -1,3 +1,5 @@
+using System;
+
 namespace _021Lab_Gdr {
     public class Warrior : Creature {
         private int _level;
@@ -24,7 +26,9 @@ namespace _021Lab_Gdr {
                 int damage = _fate.Next(0, (_strength + _weaponStrength) + 1); //same as goblin but the weapon strength it's added
                 enemy.ReduceHealthBy(enemy.Block(damage));
             }
-            
+            else {
+                enemy.DamageTaken = 0;
+            }
         }
 
         public override int Block(int damage) {
@@ -33,7 +37,9 @@ namespace _021Lab_Gdr {
             
             return ((_dexterity + _armorDexterity) < damage) ? (damage - (_dexterity + _armorDexterity)) : 0;
         }
-
+        public override string ToString() {
+            return String.Format("Warrior-  ") + base.ToString();
+        }
         public override void ChangeArmor(Armor armor) {
             _armor = armor;
         }

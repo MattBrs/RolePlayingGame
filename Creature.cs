@@ -41,7 +41,10 @@ namespace _021Lab_Gdr {
         public abstract void Attack(Creature c);
         public abstract int Block(int damage);
 
-        public int DamageTaken() => _damageTaken;
+        public int DamageTaken {
+            get => _damageTaken;
+            set => _damageTaken = value;
+        }
 
         public void ReduceHealthBy(int actualDamage) {
             _damageTaken = actualDamage;

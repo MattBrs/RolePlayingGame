@@ -7,18 +7,18 @@ namespace _021Lab_Gdr {
         static void Main(string[] args) {
             
             //goblins
-            Creature goblin1 = new Goblin("prok", 15,6,8);
-            Creature goblin2 = new Goblin("krold", 10,8,16);
+            Creature goblin1 = new Goblin("prok", 15,6,100);
+            Creature goblin2 = new Goblin("krold", 10,10,125);
             //warriors
-            Creature warrior1 = new Warrior("Goblin slayer", 25, 20, 105, 1, new Sword(), new PlateArmor());
-            Creature warrior2 = new Warrior("Josuke", 30, 25,55,1,new Sword(), new PlateArmor());
+            Creature warrior1 = new Warrior("Goblin slayer", 25, 20, 1000, 1, new Sword(), new PlateArmor());
+            Creature warrior2 = new Warrior("Josuke", 30, 20,750,1,new Sword(), new PlateArmor());
             //mages
-            Creature mage1 = new Mage("Saruman",2, 8,250,100,10,new MagicShield(3,50,15),new FireBall(2,50,10),new MageVest());
-            Creature mage2 = new Mage("Gandalf",1, 4,450,200,8,new MagicShield(2,70,10),new FireBall(4,20,10), new MageVest());
+            Creature mage1 = new Mage("Saruman",2, 8,700,100,10,new MagicShield(3,50,15),new FireBall(2,50,10),new MageVest());
+            Creature mage2 = new Mage("Gandalf",1, 4,450,200,10,new MagicShield(2,70,10),new FireBall(4,50,15), new MageVest());
             
             
             //match between two creatures
-            Fight(mage1,mage2);
+            Fight(new Mage(), new Mage());
 
             //match between 2 armies -> Ith member of the army fight against Ith member of the other army. Wins who has the most survivors.
             int armyCapacity = 25;
@@ -37,9 +37,9 @@ namespace _021Lab_Gdr {
                 Console.WriteLine("-----------------------------");
                 Console.WriteLine("turn " + turn);
                 a.Attack(b);
-                if(a.IsAlive()) Console.WriteLine(a.Name + " reduced " + b.Name + " health by " + b.DamageTaken());
+                if(a.IsAlive()) Console.WriteLine(a.Name + " reduced " + b.Name + " health by " + b.DamageTaken);
                 b.Attack(a);
-                if(b.IsAlive()) Console.WriteLine(b.Name + " reduced " + a.Name + " health by " + a.DamageTaken() + "\n");
+                if(b.IsAlive()) Console.WriteLine(b.Name + " reduced " + a.Name + " health by " + a.DamageTaken + "\n");
                 turn++;
 
             }
