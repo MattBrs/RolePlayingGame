@@ -13,7 +13,7 @@ namespace _021Lab_Gdr {
         public Armor() : this(2, 100, 50) {
             
         }
-
+        
         public int Protection => _protection;
 
         public int Integrity {

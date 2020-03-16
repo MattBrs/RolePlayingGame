@@ -1,3 +1,5 @@
+using System;
+
 namespace _021Lab_Gdr {
     public class MagicShield : Spell {
         private string _type;
@@ -12,7 +14,9 @@ namespace _021Lab_Gdr {
             _type = "defence";
         }
 
-        public int Protection => _protection;
+        public int Protection(Mage mage) {
+            return _protection + Convert.ToInt32(1.25f * (mage.Level - this._levelRequirement));      //improves the spell strength by the level of the mage
+        }
 
         public string Type => _type;
 
@@ -29,7 +33,7 @@ namespace _021Lab_Gdr {
         public override void Throw(Mage mage, Creature enemy) {
             if (IsUsable(mage) && mage.Mana >= _manaRequirement && !_thrown) {   //checks is the mage can use the spell , the mage has enough mana and if the spell has been already thrown
                 _thrown = true;
-                mage.Dexterity += _protection;                                   //sets the thrown status on true, augment the dexterity and reduces the mana
+                mage.Dexterity += Protection(mage);                                   //sets the thrown status on true, augment the dexterity and reduces the mana
                 mage.Mana -= _manaRequirement;
             }
             

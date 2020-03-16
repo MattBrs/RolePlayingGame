@@ -10,7 +10,7 @@ namespace _021Lab_Gdr {
         }
         
         public override void Attack(Creature enemy) {
-            if (this.IsAlive()) {
+            if (this.IsAlive() && enemy.IsAlive()) {
                 int damage = _fate.Next(0, _strength + 1); //damage is a random value between 0 and the actual strength of the creature
                 enemy.ReduceHealthBy(enemy.Block(damage));
             }

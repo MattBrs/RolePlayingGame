@@ -16,7 +16,7 @@ namespace _021Lab_Gdr {
         public Warrior() : this("Warrior", 25,28,50,1,new Sword(), new PlateArmor()){}
 
         public override void Attack(Creature enemy) {
-            if (this.IsAlive()) {
+            if (this.IsAlive()  && enemy.IsAlive()) {
                 if (_weapon != null && _weapon.Integrity > 0)
                     _weapon.Integrity--; //if the weapon is still intact, decrease it's integrity
                 else _weaponStrength = 0; //else set it's bonuses to 0
