@@ -2,25 +2,20 @@
 ## Known issues
 -No menu for mode selection of character selection -> to change fighters you have to edit the code.
 
--Mages refuse to cure themselves
+## Changelog V0.6.5
 
-## Fixed
--damage controller - Release 3
+-fixed various issues
 
-## Changelog
-
--Added spell system:
+## Functionalities
+-Added spell and mana system:
 
     -Fireball
     
     -MagicShield
     
--Added mage class.
+-Different classes: Goblin, Warrior, Mage + MageWarrior(still building).
 
--Improved army fights (parallels fights with large groups of creatures).
+-Armies: parallel fights with large groups of creatures.
 
--Improved code structure and introduced more conditionals.
+-Level System (still in work).
 
--improved Level System.
-
--Added mana regeneration
