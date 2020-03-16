@@ -5,14 +5,20 @@ using System.Linq;
 namespace _021Lab_Gdr {
     class Program {
         static void Main(string[] args) {
+            
+            //goblins
             Creature goblin1 = new Goblin("prok", 15,6,8);
             Creature goblin2 = new Goblin("krold", 10,8,16);
-            Creature warrior1 = new Warrior("Goblin slayer", 25, 20, 51, 1, new Sword(), new PlateArmor());
-            Creature warrior2 = new Warrior("Josuke", 32, 25,30,1,new Sword(), new PlateArmor());
-            Creature mage1 = new Mage("Merlino",2, 8,25,100,10,new MagicShield(3,50,15),new FireBall(2,50,15) );
+            //warriors
+            Creature warrior1 = new Warrior("Goblin slayer", 25, 20, 105, 1, new Sword(), new PlateArmor());
+            Creature warrior2 = new Warrior("Josuke", 30, 25,55,1,new Sword(), new PlateArmor());
+            //mages
+            Creature mage1 = new Mage("Saruman",2, 8,250,100,10,new MagicShield(3,50,15),new FireBall(2,50,10),new MageVest());
+            Creature mage2 = new Mage("Gandalf",1, 4,450,200,8,new MagicShield(2,70,10),new FireBall(4,20,10), new MageVest());
+            
             
             //match between two creatures
-            Fight(warrior1,mage1);
+            Fight(mage1,mage2);
 
             //match between 2 armies -> Ith member of the army fight against Ith member of the other army. Wins who has the most survivors.
             int armyCapacity = 25;
@@ -24,22 +30,33 @@ namespace _021Lab_Gdr {
 
         static void Fight(Creature a, Creature b) {
             Console.WriteLine("\nA clash between " + a.Name + " and " + b.Name + " has begun!");
-            
+            int turn = 1;
             while (a.IsAlive() && b.IsAlive()) {
-                Console.WriteLine(a);
-                Console.WriteLine(b);
-                Console.WriteLine();
-                
+                Console.WriteLine(a.GetFightStatus());
+                Console.WriteLine(b.GetFightStatus());
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine("turn " + turn);
                 a.Attack(b);
+                if(a.IsAlive()) Console.WriteLine(a.Name + " reduced " + b.Name + " health by " + b.DamageTaken());
                 b.Attack(a);
+                if(b.IsAlive()) Console.WriteLine(b.Name + " reduced " + a.Name + " health by " + a.DamageTaken() + "\n");
+                turn++;
+
             }
+
+            Console.WriteLine("-----------------------------");
+            Console.WriteLine(a.GetFightStatus());
+            Console.WriteLine(b.GetFightStatus());
             
+            Console.ForegroundColor = ConsoleColor.Red;
             if(a.IsUnconscious()) Console.WriteLine(a.Name + " is unconscious");
             if(b.IsUnconscious()) Console.WriteLine(b.Name + " is unconscious");
+            Console.ForegroundColor = ConsoleColor.White;
             
-            Console.Write("match ended: ");
             string champion = (a.IsAlive()) ? a.Name : b.Name;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(champion + " won!");
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         static void ArmyFight(List<Creature> army1, List<Creature> army2,int armyCapacity){
@@ -47,7 +64,7 @@ namespace _021Lab_Gdr {
             Console.WriteLine("\nA clash between two armies has begun!");
             for (int i = 0; i < armyCapacity; i++) {
                 int tmp = rnd.Next(0, 2);
-                if(tmp == 0) army1.Add(new Goblin());
+                if(tmp == 0) army1.Add(new Goblin());     //add random creatures to the army
                 else army1.Add(new Warrior());
                 
                 tmp = rnd.Next(0, 2);
@@ -60,7 +77,7 @@ namespace _021Lab_Gdr {
                 for (int i = 0; i < army1.Count && army2.Count > 0; i++) {
                     try {
                         army1[i].Attack(army2[i]);
-                        if (!army2[i].IsAlive()) army2.RemoveAt(i);
+                        if (!army2[i].IsAlive()) army2.RemoveAt(i);                             //they fight all at the same time and if they die/get unconscious they get deleted from the army
                     }
                     catch {
                         // ignored
@@ -70,7 +87,7 @@ namespace _021Lab_Gdr {
                 for (int i = 0; i < army2.Count && army1.Count > 0; i++) {
                     try {
                         army2[i].Attack(army1[i]);
-                        if (!army1[i].IsAlive()) army1.RemoveAt(i);
+                        if (!army1[i].IsAlive()) army1.RemoveAt(i);                            //try-catch to prevent a creature of an army to attack a non-existent creature
                     }
                     catch {
                         // ignored

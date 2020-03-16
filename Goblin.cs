@@ -23,5 +23,9 @@ namespace _021Lab_Gdr {
         public override string ToString() {
             return String.Format("Goblin-  ") + base.ToString();
         }
+
+        public override void ChangeArmor(Armor armor) {
+            Console.WriteLine("goblin cannot have an armor");
+        }
     }
 }

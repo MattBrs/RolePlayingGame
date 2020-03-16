@@ -23,8 +23,8 @@ namespace _021Lab_Gdr {
 
                 int damage = _fate.Next(0, (_strength + _weaponStrength) + 1); //same as goblin but the weapon strength it's added
                 enemy.ReduceHealthBy(enemy.Block(damage));
-                _weapon.Integrity -= 1;
             }
+            
         }
 
         public override int Block(int damage) {
@@ -32,6 +32,10 @@ namespace _021Lab_Gdr {
             else _armorDexterity = 0;                                         //else set it's bonuses to 0
             
             return ((_dexterity + _armorDexterity) < damage) ? (damage - (_dexterity + _armorDexterity)) : 0;
+        }
+
+        public override void ChangeArmor(Armor armor) {
+            _armor = armor;
         }
     }
 }

@@ -4,16 +4,20 @@ using System.Net.Cache;
 namespace _021Lab_Gdr {
     public class Mage : Creature {
         private int _level;
+        private int _maximumMana;
         private int _mana;
         private Spell _recoverySpell;
         private Spell _destructiveSpell;
+        private Armor _lightArmor;
         
-        public Mage(string name, int strength, int dexterity, int health, int mana, int level, Spell recoverySpell, Spell destructiveSpell) : base(name, strength, dexterity,
+        public Mage(string name, int strength, int dexterity, int health, int maximumMana, int level, Spell recoverySpell, Spell destructiveSpell,Armor armor) : base(name, strength, dexterity,
             health) {
             _level = level;
             _recoverySpell = recoverySpell;
             _destructiveSpell = destructiveSpell;
-            _mana = mana;
+            _maximumMana = maximumMana;
+            _lightArmor = armor;
+            _mana = maximumMana;
         }
 
         public int Mana {
@@ -23,10 +27,15 @@ namespace _021Lab_Gdr {
 
         public int Level => _level;
         public override void Attack(Creature enemy) {
-            if (IsAlive()) {
-                if (_health <= (_health * 0.25f) && _recoverySpell != null && _mana >= _recoverySpell.ManaRequirement &&
-                    _recoverySpell.IsUsable(this)) {
-                    if (typeof(MagicShield) == _recoverySpell.GetType() && !(_recoverySpell as MagicShield).IsActive()
+            if (IsAlive() && enemy.IsAlive()) {
+                if (_mana < _maximumMana) {
+                    _mana += 10;                       //mana regeneration
+                    if (_mana > _maximumMana)
+                        _mana = _maximumMana;
+                }
+                
+                if (Health <= (Health / 2) && _recoverySpell != null && _mana >= _recoverySpell.ManaRequirement) {
+                    if (typeof(MagicShield) == _recoverySpell.GetType() && !((MagicShield) _recoverySpell).IsActive()
                     ) //if the recovery spell is a magicShield, check if it's already active before throwing.
                         _recoverySpell.Throw(this, enemy);
                     else //else (the spell is a cure spell) throw it
@@ -44,13 +53,18 @@ namespace _021Lab_Gdr {
 
         public override int Block(int damage) {
             if (typeof(MagicShield) == _recoverySpell.GetType()) {                                                   //if the spell is a magicShield
-                if (!(_recoverySpell as MagicShield).IsActive() && (_recoverySpell as MagicShield).Duration <= 0) {  //checks if it's active and if it still has duration
-                    _dexterity -= (_recoverySpell as MagicShield).Protection(this);                                        //reduces the dexterity
-                    (_recoverySpell as MagicShield).Thrown = false;                                                  //set the spell as not thrown  
-                    (_recoverySpell as MagicShield).Duration = 3;                                                    //reset the duration
+                if (!((MagicShield) _recoverySpell).IsActive() && ((MagicShield) _recoverySpell).Duration <= 0) {  //checks if it's active and if it still has duration
+                    _dexterity -= ((MagicShield) _recoverySpell).Protection(this);                                        //reduces the dexterity
+                    ((MagicShield) _recoverySpell).Thrown = false;                                                  //set the spell as not thrown  
+                    ((MagicShield) _recoverySpell).Duration = 3;                                                    //reset the duration
                 }
             }
             return (_dexterity < damage) ? (damage - _dexterity) : 0;
+        }
+
+        public override void ChangeArmor(Armor armor) {
+            if (armor.Type == "light") _lightArmor = armor;
+            else Console.WriteLine("mages can only equip light armors!");
         }
     }
 }

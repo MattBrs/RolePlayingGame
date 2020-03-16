@@ -2,16 +2,14 @@ using System;
 
 namespace _021Lab_Gdr {
     public class MagicShield : Spell {
-        private string _type;
         private int _protection;
         private int _duration;
         private bool _thrown;
         
-        public MagicShield(int levelRequirement, int manaRequirement, int protection) : base("magicShield", levelRequirement, manaRequirement) {
+        public MagicShield(int levelRequirement, int manaRequirement, int protection) : base("magicShield", levelRequirement, manaRequirement, "defence") {
             _protection = protection;
             _duration = 3;
             _thrown = false;
-            _type = "defence";
         }
 
         public int Protection(Mage mage) {

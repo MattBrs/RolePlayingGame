@@ -6,6 +6,7 @@ namespace _021Lab_Gdr {
         protected int _strength;
         protected int _dexterity;
         protected int _health;
+        protected int _damageTaken = 0;
         protected static Random _fate = new Random();            //determines the chance to deal greater damage
 
         protected Creature(string name, int strength, int dexterity, int health) {
@@ -40,9 +41,13 @@ namespace _021Lab_Gdr {
         public abstract void Attack(Creature c);
         public abstract int Block(int damage);
 
+        public int DamageTaken() => _damageTaken;
+
         public void ReduceHealthBy(int actualDamage) {
+            _damageTaken = actualDamage;
             _health -= actualDamage;                       //health decreases by the damage dealt by another creature
         }
+        
 
         public bool IsAlive() {
             return _health > 0;
@@ -59,5 +64,11 @@ namespace _021Lab_Gdr {
         public override string ToString() {
             return string.Format($"Name: {_name}  Health: {_health}  Strength: {_strength}  Dexterity:  {_dexterity}");
         }
+
+        public string GetFightStatus() {
+            return string.Format($"Name: {_name}  Health: {_health}  Dexterity: {_dexterity}");
+        }
+
+        public abstract void ChangeArmor(Armor armor);
     }
 }

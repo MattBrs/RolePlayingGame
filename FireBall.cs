@@ -3,9 +3,9 @@ using System;
 namespace _021Lab_Gdr {
     public class FireBall : Spell {
         private int _damage;
-        private string _type;
+        
          
-        public FireBall( int levelRequirement, int manaRequirement, int damage) : base("Fireball", levelRequirement, manaRequirement) {
+        public FireBall( int levelRequirement, int manaRequirement, int damage) : base("Fireball", levelRequirement, manaRequirement, "attack") {
             _damage = damage;
             _type = "attack";
         }
